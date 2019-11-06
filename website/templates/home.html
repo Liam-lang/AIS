@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lenovo OS Enablement</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!--css load-->
+  <link href="static/img/l-favicon.ico" rel="shortcut icon">
+  <link href="static/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="static/css/animate/animate.min.css" rel="stylesheet">
+  <link href="static/css/home.css" rel="stylesheet">
+  <!--end css load-->
+</head>
+
+<body>
+
+  <!--==========================
+  Header
+  ============================-->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#hero">OS Team</a></h1>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#hero">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+		  <li><a href="/task">Get Started >></a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Hero Section
+  ============================-->
+  <section id="hero">
+    <div class="hero-container">
+      <h1>Welcome to Lenovo OS Enablement Team</h1>
+      <h2>We are team of talanted engineers enabling OS on Lenovo servers</h2>
+      <a href="#about" class="btn-get-started">More</a>
+    </div>
+  </section><!-- #hero -->
+
+  <main id="main">
+    <!--==========================
+      About Us Section
+    ============================-->
+    <section id="about">
+      <div class="container">
+        <div class="row about-container">
+
+          <div class="col-lg-6 content order-lg-1 order-2">
+            <h2 class="title">Few Words About Us</h2>
+            <p>
+				We are Lenovo OS Enablement team. This website is designed to enhance OS enablement automatic test.
+				It support log, device check currently. You can press "Get Started" to use it.
+            </p>
+
+            <div class="wow fadeInUp">
+              <h4 class="title"><a href="">OS Category</a></h4>
+              <p class="description">Linux, Windows and VMware.</p>
+            </div>
+
+            <div class="wow fadeInUp" data-wow-delay="0.2s">
+              <h4 class="title"><a href="">Team Members</a></h4>
+              <p class="description">Adam Deng, Boyong Li, Chengcheng Peng, Daneil Han, Danfeng Wang, Guangzhe Fu, Guiqing Li,
+			  Huaisheng Ye, Jian Ma, Mandy Cheng, Neo Cui, Ningting Cheng, Ocean He, Pei Yue, Peng Liu, Doris Yu, Xiumiao Song,
+			  Zechun Wei</p>
+            </div>
+          </div>
+
+          <div class="col-lg-6 background order-lg-2 order-1 wow fadeInRight"></div>
+        </div>
+
+      </div>
+    </section><!-- #about -->
+
+    <!--==========================
+      Facts Section
+    ============================-->
+    <section id="facts">
+      <div class="container wow fadeIn">
+        <div class="section-header">
+          <h3 class="section-title">Facts</h3>
+          <p class="section-description">We are on the way to perform better.</p>
+        </div>
+        <div class="row counters">
+
+  				<div class="col-lg-4 col-4 text-center">
+            <span data-toggle="counter-up">20</span>
+            <p>OSes</p>
+  				</div>
+
+          <div class="col-lg-4 col-4 text-center">
+            <span data-toggle="counter-up">5</span>
+            <p>Projects</p>
+  				</div>
+
+          <div class="col-lg-4 col-4 text-center">
+            <span data-toggle="counter-up">18</span>
+            <p>Workers</p>
+  				</div>
+
+  			</div>
+
+      </div>
+    </section><!-- #facts -->
+
+
+    <!--==========================
+      Author Section
+    ============================-->
+    <section id="team">
+      <div class="container wow fadeInUp">
+        <div class="section-header">
+          <h3 class="section-title">Author</h3>
+        </div>
+        <div class="row">
+          <div class="col-lg-16 col-md-16">
+            <div class="member">
+              <div class="pic"><img src="static/img/author.jpg" alt="Author"></div>
+              <h4>Neo Cui</h4>
+              <span>Linux Engineer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- #team -->
+
+  </main>
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>Neo Cui</strong>. All Rights Reserved
+      </div>
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <!-- JavaScript Libraries -->
+  <script src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+  <script src="{{url_for('static', filename='js/wow/wow.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/easing/easing.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/waypoints/waypoints.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/counterup/counterup.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/superfish/hoverIntent.js')}}"></script>
+  <script src="{{url_for('static', filename='js/superfish/superfish.min.js')}}"></script>
+
+  <script src="{{url_for('static', filename='js/home.js')}}"></script>
+
+</body>
+</html>

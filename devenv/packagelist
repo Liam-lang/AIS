@@ -1,0 +1,8 @@
+#Essential packages
+#Version: 1.0
+Database: mysql, sqlalchemy
+Python: Flask, eventlet, pyinotify, pandas, xlsxwriter
+Apache: mod_wsgi
+Big Data: gensim, nltk, sklearn
+Website: jquery, bootstrap, socketio
+

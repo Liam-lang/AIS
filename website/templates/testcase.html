@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<script src="{{url_for('static', filename='js/testcase.js')}}"></script>
+{% endblock %}
+
+{% block navigation %}
+<li role="presentation" class="active"><a href="/task">Task</a></li>
+<li role="presentation" class="active"><a href="/report">Report</a></li>
+{% endblock %}
+
+
+{% block content %}
+<div class="well">
+	<div id="toolbar">
+		<button id="btnshowUploadTC" class="btn btn-warning">Upload Test Case</button>
+		<button id="btnshowAddTC" class="btn btn-warning">Add Test Case</button>
+		<button id="btnconfirmDeleteTC" class="btn btn-danger" disabled>
+				<i class="glyphicon glyphicon-remove"></i>Delete</button>
+	</div>
+	<table id="listTableTC"
+			data-toggle="true"
+			data-toolbar="#table_toolbar"
+			data-search="true"
+		    data-show-columns="true"
+		    data-pagination="true"
+		    data-page-size="15"
+		    data-pagination-first-text="First"
+		    data-pagination-pre-text="Previous"
+		    data-pagination-next-text="Next"
+		    data-pagination-last-text="Last"
+		    data-show-pagination-switch="true"
+		    data-row-style="rowStyle">
+	</table>
+</div>
+
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="uploadModalLabel">Upload your Test Case</h4>
+			</div>
+			<div class="modal-body">
+				<!-- Text Input-->
+				<form role="form" method="POST" enctype="multipart/form-data">
+					<input id="uploadTC" name="uploadTC" type="file" multiple>
+				</form>
+			</div>
+			<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="editModalLabel">Create New Test Case</h4>
+			</div>
+			<div class="modal-body">
+				<!-- Text Input-->
+				<form role="form">
+					<div class="form-group row">
+						<div class="col-xs-4">
+							<label for="inputName">CASE NAME</label>
+							<input id="inputName" type="text" maxlength="30" class="form-control input-md" />
+						</div>
+					</div>
+					<div id="platformGroup" class="form-group row">
+						<div class="col-xs-12">
+							<label for="platformList">Platform</label>
+							<div class="panel panel-default">
+								<div id=platformList class="panel-body">
+									 <div>
+										<label class="checkbox-inline col-xs-3">
+											<input type="checkbox" name="Platform" value="RedHat"> RedHat
+										</label>
+										 <label class="checkbox-inline col-xs-3">
+											<input type="checkbox" name="Platform" value="SUSE"> SUSE
+										</label>
+										<label class="checkbox-inline col-xs-3">
+											<input type="checkbox" name="Platform" value="kernel"> kernel
+										</label>
+									</div>
+									<div>
+										 <label class="checkbox-inline col-xs-3">
+											<input type="checkbox" name="Platform" value="VMware"> VMware
+										</label>
+										<label class="checkbox-inline col-xs-3">
+											<input type="checkbox" name="Platform" value="Windows"> Windows
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="txtDes">SCRIPT NAME</label>
+						<textarea class="form-control" id="txtDes" name="inputDes" rows="4" maxlength="300"></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="btnAddTC" type="button" class="btn btn-primary">Add</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="text-align:center;">
+				<h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are going to Delete this forever !!</h4>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<button id="btnDelete" type="button" class="btn btn-primary">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

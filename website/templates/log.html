@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<script src="{{url_for('static', filename='js/log.js')}}"></script>
+{% endblock %}
+
+{% block navigation %}
+<li role="presentation" class="active"><a href="/task">Task</a></li>
+<li role="presentation" class="active"><a href="/report">Report</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="well">
+	<div id="toolbar">
+		<button id="confirmDelete" class="btn btn-danger" disabled>
+			<i class="glyphicon glyphicon-remove"></i>Delete
+		</button>
+	</div>
+	<table id="listTable"
+		data-toggle="true"
+		data-toolbar="#table_toolbar"
+		data-search="true"
+		data-cache="false"
+		data-show-columns="true"
+		data-pagination="true"
+		data-page-size="15"
+		data-page-number="1"
+		data-side-pagination="server"
+		data-pagination-first-text="First"
+		data-pagination-pre-text="Previous"
+		data-pagination-next-text="Next"
+		data-pagination-last-text="Last"
+		data-show-pagination-switch="true"
+		data-detail-view="true"
+		data-detail-formatter="detailFormatter"
+		data-row-style="rowStyle"
+		>
+	</table>
+	</div>
+
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="editModalLabel">Update Log</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Information</h3>
+						</div>
+						<div class="panel-body">
+							<textarea class="form-control" id="showInfo" disabled="disabled"></textarea>
+						</div>
+					</div>
+				<form role="form">
+					<div class="form-group">
+						<label for="editComment" class="control-label">Comment:</label>
+						<textarea class="form-control" rows="5" maxlength="3000" id="editComment"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="bznumber" class="control-label">Bugzilla:</label>
+						<textarea class="form-control" rows="2" maxlength="100" id="bznumber"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="editStatus" class="control-label">Status: </label>
+							<select class="selectpicker" data-width="fit" id="editStatus" data-style="btn-warning" show-menu-arrow>
+								<option value="valid">valid</option>
+								<option value="invalid">invalid</option>
+							</select>
+					</div>
+				</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="btnUpdate" type="button" class="btn btn-primary">Update</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="text-align:center;">
+					<h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are going to Delete this forever !!</h4>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button id="btnDelete" type="button" class="btn btn-primary">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<script src="{{url_for('static', filename='js/controlServer.js')}}"></script>
+{% endblock %}
+
+
+{% block navigation %}
+<li role="presentation" class="active"><a href="/task">Task</a></li>
+<li role="presentation" class="active"><a href="/report">Report</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="well">
+		<div id="toolbar">
+			<button id="btnshowAddCS" class="btn btn-warning">Add Control Server</button>
+			<button id="btnconfirmDeleteCS" class="btn btn-danger" disabled>
+				<i class="glyphicon glyphicon-remove"></i>Delete</button>
+		</div>
+		<table id="listTableCS"
+			data-toggle="true"
+			data-toolbar="#table_toolbar"
+			data-search="true"
+		    data-show-columns="true"
+		    data-pagination="true"
+		    data-page-size="15"
+		    data-pagination-first-text="First"
+		    data-pagination-pre-text="Previous"
+		    data-pagination-next-text="Next"
+		    data-pagination-last-text="Last"
+		    data-show-pagination-switch="true"
+		    data-row-style="rowStyle">
+		</table>
+	</div>
+
+	<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="editModalLabel">Create New Control Server</h4>
+				</div>
+				<div class="modal-body">
+					<!-- Text Input-->
+					<form role="form">
+						<div class="form-group row">
+							<div class="col-xs-4">
+								<label for="inputName">Name</label>
+									<input id="inputName" type="text" maxlength="30" class="form-control input-md" />
+							</div>
+							<div class="col-xs-2">
+								<label for="inputLocation" class="control-label">Location</label>
+										<select class="selectpicker" data-width="fit" id="inputLocation" data-style="btn-warning" show-menu-arrow>
+										<option>BDC</option>
+										<option>TDC</option>
+										<option>RDC</option>
+										</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-xs-4">
+								<label for="inputPubIP">Public IP</label>
+									<input id="inputPubIP" type="text" maxlength="30" class="form-control input-md" />
+							</div>
+							<div class="col-xs-4">
+								<label for="inputPriIP">Private IP</label>
+									<input id="inputPriIP" type="text" maxlength="30" class="form-control input-md" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-xs-4">
+								<label for="inputMAC">MAC</label>
+									<input id="inputMAC" type="text" maxlength="30" class="form-control input-md" />
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="btnAddCS" type="button" class="btn btn-primary">Add</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="text-align:center;">
+					<h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are going to Delete this forever !!</h4>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button id="btnDelete" type="button" class="btn btn-primary">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

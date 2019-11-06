@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<script src="{{url_for('static', filename='js/device.js')}}"></script>
+{% endblock %}
+
+{% block navigation %}
+<li role="presentation" class="active"><a href="/task">Task</a></li>
+<li role="presentation" class="active"><a href="/report">Report</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="well">
+	<!--<div id="toolbar">-->
+		<!--<button id="btnshowUploadPCIID" class="btn btn-warning">Upload PCIID</button>-->
+		<!--&lt;!&ndash;<a href='/showAddDevice'>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button id="showAddDevice" class="btn btn-warning" >Add Record</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+		<!--&lt;!&ndash;<button id="confirmDelete" class="btn btn-danger" disabled>&ndash;&gt;-->
+			<!--&lt;!&ndash;<i class="glyphicon glyphicon-remove"></i>Delete&ndash;&gt;-->
+		<!--&lt;!&ndash;</button>&ndash;&gt;-->
+	<!--</div>-->
+	<table id="listTable"
+		data-toggle="true"
+		data-toolbar="#table_toolbar"
+		data-search="true"
+		data-show-columns="true"
+		data-pagination="true"
+		data-page-size="15"
+		data-pagination-first-text="First"
+		data-pagination-pre-text="Previous"
+		data-pagination-next-text="Next"
+		data-pagination-last-text="Last"
+		data-show-pagination-switch="true"
+		data-row-style="rowStyle"
+		>
+	</table>
+	</div>
+
+<!--<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">-->
+	<!--<div class="modal-dialog">-->
+		<!--<div class="modal-content">-->
+			<!--<div class="modal-header">-->
+				<!--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>-->
+				<!--<h4 class="modal-title" id="uploadModalLabel">Upload your PCIID</h4>-->
+			<!--</div>-->
+			<!--<div class="modal-body">-->
+				<!--&lt;!&ndash; Text Input&ndash;&gt;-->
+				<!--<form role="form" method="POST" enctype="multipart/form-data">-->
+					<!--<input id="uploadPCIID" name="uploadPCIID" type="file" multiple>-->
+				<!--</form>-->
+			<!--</div>-->
+			<!--<div class="modal-footer">-->
+					<!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="editModalLabel">Update Device</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Description</h3>
+						</div>
+						<div class="panel-body">
+							<textarea class="form-control" id="showDes" disabled="disabled"></textarea>
+						</div>
+					</div>
+				<label class="control-label">PCIID:</label>
+				<form role="form">
+					<div class="form-group row">
+						<div class="col-sm-3">
+							<input type="text" class="form-control" maxlength="4" id="editVendor" placeholder="vendorid">
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" maxlength="4" id="editDevice" placeholder="deviceid">
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" maxlength="4" id="editSubvendor" placeholder="subvendorid">
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" maxlength="4" id="editSubdevice" placeholder="subdeviceid">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-xs-4">
+							<label for="editPro">Project</label>
+								<input id="editPro" type="text" maxlength="30" class="form-control input-md" />
+						</div>
+						<div class="col-xs-2">
+						<label for="editStatus" class="control-label">Status: </label>
+							<select class="selectpicker" data-width="fit" id="editStatus" data-style="btn-warning" show-menu-arrow>
+								<option>valid</option>
+								<option>invalid</option>
+							</select>
+						</div>
+					</div>
+				</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="btnUpdate" type="button" class="btn btn-primary">Update</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="text-align:center;">
+					<h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are going to Delete this forever !!</h4>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button id="btnDelete" type="button" class="btn btn-primary">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">-->
+		<!--<div class="modal-dialog">-->
+			<!--<div class="modal-content">-->
+				<!--<div class="modal-header">-->
+					<!--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>-->
+					<!--<h4 class="modal-title" id="addModalLabel">Create Your New Record</h4>-->
+				<!--</div>-->
+				<!--<div class="modal-body">-->
+					<!--<form role="form">-->
+						<!--<div class="form-group row">-->
+							<!--<div class="col-xs-3">-->
+								<!--<label for="inputVendor">Vendor</label>-->
+								<!--<input id="inputVendor" name="inputVendor" type="text" maxlength="30" class="form-control input-md" />-->
+							<!--</div>-->
+							<!--<div class="col-xs-3">-->
+								<!--<label for="inputPro">Project</label>-->
+								<!--<input id="inputPro" name="inputPro" type="text" maxlength="30" class="form-control input-md" />-->
+							<!--</div>-->
+						<!--</div>-->
+
+						<!--<div class="form-group">-->
+							<!--<label for="inputDes">Description</label>-->
+							<!--<textarea class="form-control" id="inputDes" name="inputDes" rows="4" maxlength="300"></textarea>-->
+						<!--</div>-->
+
+						<!--<label class="control-label">PCIID:</label>-->
+						<!--<div class="form-group row">-->
+							<!--<div class="col-sm-2">-->
+								<!--<input type="text" class="form-control" maxlength="4" id="vendorid" name="vendorid" placeholder="vendorid">-->
+							<!--</div>-->
+							<!--<div class="col-sm-2">-->
+								<!--<input type="text" class="form-control" maxlength="4" id="deviceid" name="deviceid" placeholder="deviceid">-->
+							<!--</div>-->
+							<!--<div class="col-sm-2">-->
+								<!--<input type="text" class="form-control" maxlength="4" id="subvendorid" name="subvendorid" placeholder="subvendorid">-->
+							<!--</div>-->
+							<!--<div class="col-sm-2">-->
+								<!--<input type="text" class="form-control" maxlength="4" id="subdeviceid" name="subdeviceid" placeholder="subdeviceid">-->
+							<!--</div>-->
+						<!--</div>-->
+
+						<!--<div class="form-group">-->
+							<!--<label for="inputStat">Status: </label>-->
+							<!--<select class="selectpicker" id="inputStat" name="inputStat" data-style="btn-warning" data-width="fit">-->
+								<!--<option>Valid</option>-->
+								<!--<option>Invalid</option>-->
+							<!--</select>-->
+						<!--</div>-->
+					<!--</form>-->
+				<!--</div>-->
+				<!--<div class="modal-footer">-->
+					<!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+					<!--<button id="btnAdd" type="button" class="btn btn-primary">Add</button>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+
+
+{% endblock %}

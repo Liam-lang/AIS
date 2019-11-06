@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <title>Lenovo OS Enablement</title>
+   
+	<!--load css and js-->
+	<link href="static/img/l-favicon.ico" rel="shortcut icon">
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/bootstrap-select.css" rel="stylesheet">
+	<script src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/bootstrap-select.js')}}"></script>
+	<!--end load css and js-->
+  </head>
+
+<body style="background: #f9f9f4">
+<!--container-->
+<div class="container">
+	<div class="header">
+		<nav>
+		<ul class="nav nav-pills pull-right">
+			<li role="presentation" class="active"><a href="/log">Back</a></li>
+			<li role="presentation" class="active"><a href="/logout">Logout</a></li>
+		</ul>
+		</nav>
+		<h2 class="text-muted">Lenovo OS Enablement</h3>
+	</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+	{% if messages %}
+		{% for category, message in messages %}
+		<div class="alert alert-{{category}} alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>{{category}}! </strong>{{message}}
+		</div>
+		{% endfor %}
+	{% endif %}
+{% endwith %}
+<!-- Form -->
+<form role="form" method="post" action="/addLog">
+<legend>Create Your New Record</legend>
+
+<!-- Text input-->
+<div class="form-group">
+	<label for="txtInfo">Information</label>  
+	<textarea id="txtInfo" name="inputInfo" rows="2" maxlength="150" class="form-control"></textarea>
+</div>
+
+<div class="form-group">
+	<label for="txtComment">Comment</label>
+	<textarea class="form-control" id="txtComment" name="inputComment" rows="8" maxlength="3000"></textarea>
+</div>
+
+<div class="form-group">
+	<label for="txtBZ">Bugzilla</label>
+	<textarea class="form-control" id="txtBZ" name="inputBZ" rows="2" maxlength="100"></textarea>
+</div>
+
+<div class="form-group">
+	<label for="txtStat">Status: </label>
+	<select class="selectpicker" id="txtStat" name="inputStat" data-style="btn-warning" data-width="fit">
+		<option>Valid</option>
+		<option>Invalid</option>
+	</select>
+	<label for="txtType">Error Type: </label>
+	<select class="selectpicker" name="inputError_Type" data-style="btn-info" data-width="fit">
+		<option>fail</option>
+		<option>warning</option>
+		<option>error</option>
+	</select>
+	<label for="txtSrc">Source: </label>
+	<select class="selectpicker" id="txtSrc" name="inputSrc" data-style="btn-success" data-width="fit">
+		<option>messages</option>
+		<option>dmesg</option>
+		<option>mcelog</option>
+		<option>anaconda</option>
+	</select>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+	<p class="text-center">
+	<input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Publish" />
+	</p>
+</div>
+</form><!--end Form-->
+
+      
+    <footer class="footer">
+		<p>If you have any suggestions, please contact <a href="mailto:cuilj2@lenovo.com">Neo Cui</a></p>
+        <p>&copy; Lenovo 2018</p>
+    </footer>
+
+</div><!--end container-->
+</body>
+</html>
+

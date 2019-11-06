@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<script src="{{url_for('static', filename='js/task.js')}}"></script>
+{% endblock %}
+
+
+{% block navigation %}
+<li role="presentation" class="active"><a href="/report">Report</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="well">
+		<div id="toolbar">
+			<button id="btnshowAddTask" class="btn btn-warning">Add Task</button>
+			<button id="btnconfirmDeleteTask" class="btn btn-danger" disabled>
+				<i class="glyphicon glyphicon-remove"></i>Delete</button>
+		</div>
+		<table id="listTableTask"
+			data-toggle="true"
+			data-toolbar="#table_toolbar"
+			data-search="true"
+		    data-show-columns="true"
+		    data-pagination="true"
+		    data-page-size="15"
+		    data-pagination-first-text="First"
+		    data-pagination-pre-text="Previous"
+		    data-pagination-next-text="Next"
+		    data-pagination-last-text="Last"
+		    data-show-pagination-switch="true"
+		    data-row-style="rowStyle">
+		</table>
+	</div>
+
+	<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="editModalLabel">Create Your New Task</h4>
+				</div>
+				<div class="modal-body">
+					<!-- Text Input-->
+					<form role="form">
+						<div class="form-group row">
+							<div class="col-xs-4">
+								<label for="inputTaskType">Task Type</label>
+									<select class="selectpicker" data-width="fit" id="inputTaskType" data-style="btn-warning" show-menu-arrow>
+										<option>OS deployment</option>
+										<option>Feature test</option>
+										<option>Inbox test</option>
+									</select>
+							</div>
+							<div class="col-xs-3">
+								<label for="inputControlServer">ControlServer</label>
+									<select class="selectpicker" data-width="fit" id="inputControlServer" data-style="btn-warning" show-menu-arrow>
+									</select>
+							</div>
+							<div class="col-xs-3">
+								<label for="inputTagetOS">Taget OS</label>
+									<select class="selectpicker" data-width="fit" id="inputTagetOS" data-style="btn-warning" show-menu-arrow>
+										<option>RedHat</option>
+										<option>SUSE</option>
+										<option>VMware</option>
+										<option>Windows</option>
+									</select>
+							</div>
+						</div>
+						<div id="TeskCaseGroup" class="form-group row">
+							<div class="col-xs-12">
+								<label for="testCaseList">Test Case</label>
+									<div class="panel panel-default">
+    									<div id=testCaseList class="panel-body">
+											<div id="tcListForFeatureRH">
+											</div>
+											<div id="tcListForFeatureSS">
+											</div>
+											<div id="tcListForFeatureWin">
+											</div>
+											<div id="tcListForFeatureVM">
+											</div>
+											<div id="tcListForInboxL">
+											</div>
+											<div id="tcListForInboxV">
+											</div>
+											<div id="tcListForInboxW">
+											</div>
+    									</div>
+									</div>
+							</div>
+						</div>
+						<div id="ISOGroup" class="form-group row">
+							<div class="col-xs-5">
+								<label for="inputOSImage">OS image</label>
+									<select class="selectpicker" data-width="fit" id="inputOSImage" data-style="btn-warning" show-menu-arrow>
+									</select>
+							</div>
+						</div>
+						<div id="rpmGroup" class="form-group row">
+							<div class="col-xs-5">
+								<label for="inputKernelRPM">kernel packege</label>
+									<select class="selectpicker" data-width="fit" id="inputKernelRPM" data-style="btn-warning" show-menu-arrow>
+									</select>
+							</div>
+						</div>
+						<div id="SUTGroup" class="form-group row">
+							<div class="col-xs-6">
+								<label for="inputSUTMAC">SUT MAC</label>
+									<input id="inputSUTMAC" type="text" maxlength="30" class="form-control input-md" />
+							</div>
+							<div class="col-xs-6">
+								<label for="inputMTSN">MTSN</label>
+									<input id="inputMTSN" type="text" maxlength="30" class="form-control input-md" />
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="btnAddTask" type="button" class="btn btn-primary">Add</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="uploadLabel">Upload your PCIID</h4>
+				</div>
+				<div class="modal-body">
+					<!-- Text Input-->
+					<form role="form" method="POST" enctype="multipart/form-data">
+						<input id="uploadPCIID" name="uploadPCIID" type="file" multiple>
+					</form>
+				</div>
+				<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="viewModalLabel">Config View</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 id="configName" class="panel-title"></h3>
+						</div>
+						<div class="panel-body">
+							<textarea class="form-control" id="showDes" disabled="disabled">
+							</textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="text-align:center;">
+					<h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are going to Delete this forever !!</h4>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button id="btnDelete" type="button" class="btn btn-primary">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

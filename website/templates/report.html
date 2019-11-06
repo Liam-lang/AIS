@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<script src="{{url_for('static', filename='js/report.js')}}"></script>
+{% endblock %}
+
+{% block navigation %}
+<li role="presentation" class="active"><a href="/task">Task</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="well well-sm">
+		<h4>OS Enabement Report</h4>
+		<p>You can get the device driver report and testing report at this page.
+		OS enablement report is classified by different platform with date label.</p>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<img src="static/img/redhat.png" alt="Red Hat" width="8%" height="8%">
+		</div>
+		<div class="col-sm-6">
+			<img src="static/img/suse.png" alt="SUSE" width="8%" height="8%">
+		</div>
+
+	</div>
+
+	<div class="form-group row">
+		<div class="col-md-6">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Red Hat Enterprise Linux</div>
+				<div id="rhel" class="panel-body">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-primary">
+				<div class="panel-heading">SUSE Linux Enterprise Server</div>
+				<div id="sles" class="panel-body">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<img src="static/img/VMware.jpg" alt="VMware" width="8%" height="8%">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<div class="col-md-6">
+			<div class="panel panel-primary">
+				<div class="panel-heading">vmware</div>
+				<div id="vmware" class="panel-body">
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="editModalLabel">Enablement Reports</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Enablement Reports</h3>
+						</div>
+						<div class="panel-body">
+							<table id="tableReport"
+								data-toggle="true"
+								data-toolbar="#table_toolbar"
+								data-search="true"
+								data-show-columns="true"
+								data-pagination="true"
+								data-page-size="6"
+								data-pagination-first-text="First"
+								data-pagination-pre-text="Previous"
+								data-pagination-next-text="Next"
+								data-pagination-last-text="Last"
+								data-show-pagination-switch="true"
+								data-row-style="rowStyle">
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+

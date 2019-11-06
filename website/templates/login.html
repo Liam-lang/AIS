@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+	<meta charset="UTF-8">
+	<title>Lenovo OS Enablement</title>
+	<!--css load-->
+	<link href="static/img/l-favicon.ico" rel="shortcut icon">
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/style.css" rel="stylesheet">
+	<!--end css load-->
+</head>
+
+<body>
+<div class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+	  {% for category, message in messages %}
+	    <div class="alert alert-{{category}} alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>{{category}}! </strong>{{message}}
+		</div>
+	  {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <div class="form">
+	  
+      <ul class="tab-group">
+        <li class="tab active"><a href="#login">Log In</a></li>
+        <li class="tab"><a href="#signup">Sign Up</a></li>
+      </ul>
+	  <!-- tab-content-->
+      <div class="tab-content">
+		<!--user sign in-->
+        <div id="login">
+          <h1>Welcome</h1>
+
+          <form action="/login" method="post">
+            <div class="field-wrap">
+			  <label>
+                Email Address<span class="req">*</span>
+			  </label>
+              <input type="email"required autocomplete="off" name="username"/>
+            </div>
+            <div class="field-wrap">
+              <label>
+                Password<span class="req">*</span>
+              </label>
+              <input type="password"required autocomplete="off" name="password"/>
+            </div>
+            <p class="forgot"><a href="#">Forgot Password?</a></p>
+            <button class="button button-block"/>Log In</button>
+          </form>
+        </div><!--end user sign in-->
+		<!--user sign up-->
+        <div id="signup">   
+          <h1>Sign Up for Free</h1>
+
+          <form action="/register" method="post">
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                First Name<span class="req">*</span>
+              </label>
+              <input type="text" required autocomplete="off" name="fname"/>
+            </div>
+            <div class="field-wrap">
+              <label>
+                Last Name<span class="req">*</span>
+              </label>
+              <input type="text"required autocomplete="off" name="lname"/>
+            </div>
+          </div>
+          <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input type="email"required autocomplete="off" name="username"/>
+          </div>
+          <div class="field-wrap">
+            <label>
+              Set A Password<span class="req">*</span>
+            </label>
+            <input type="password"required autocomplete="off" name="password"/>
+          </div>
+          <button type="submit" class="button button-block"/>Get Started</button>
+          </form>
+        </div><!--end user sign up-->
+      </div><!-- tab-content -->
+
+</div>
+  </div><!-- /form -->
+  <!--js load-->
+  <script src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/login.js')}}"></script>
+  <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  <!--end js load-->
+</body>
+
+</html>
